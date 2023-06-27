@@ -1,12 +1,12 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+const submitroute = 'http://localhost:8888/submitroute';
+const getdataroute = 'http://localhost:8888/getdata';
 
 function App() {
   
-
-  const submitroute = 'http://localhost:8888/submitroute';
-
   const [inputValue, setInputValue] = useState('');
+  const [urlArray, seturlArray] = useState([]);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -23,6 +23,24 @@ function App() {
     }
       
   };
+
+  
+  useEffect(() => {
+    const getdata = async () => {
+      try {
+        
+        const response = await axios.get(getdataroute);
+        seturlArray(response.data);
+        console.log(urlArray)
+        console.log(response.data)
+        
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getdata();
+  }, []);
 
   return (
     <div className=" w-[100vw] h-[100vh] container mx-auto my-auto flex flex-col items-center justify-center">
