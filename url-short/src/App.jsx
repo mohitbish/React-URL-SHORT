@@ -11,13 +11,13 @@ function App() {
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
- 
-  const handledelete = async(e)=>{
-     const response = await axios.post(deleteroute, {
+
+  const handledelete = async (e) => {
+    const response = await axios.post(deleteroute, {
       data: e.short,
     });
     console.log(e.short);
-  }
+  };
 
   const handlesubmit = async () => {
     try {
@@ -45,12 +45,12 @@ function App() {
 
   return (
     <div className=" w-[100vw] h-[100vh] container mx-auto my-auto flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold w-[70vw]">URL-SHORTNER</h1>
+      <h1 className="text-4xl font-bold w-[80vw]">URL-SHORTNER</h1>
       <form className="flex flex-col my-10 bg-[#2d3748]">
         <input
           type="text"
           name="FullURL"
-          className="border rounded p-2 w-[50vw]  text-white  bg-gray-700"
+          className="border rounded p-2 w-[40vw]  text-white  bg-gray-700"
           placeholder="Enter your url"
           value={inputValue}
           onChange={handleInputChange}
@@ -63,7 +63,7 @@ function App() {
           Shrink
         </button>
       </form>
-      <table className="w-[70vw] border border-gray-300">
+      <table className="max-w-[80vw]">
         <thead>
           <tr>
             <th className="w-3/5 bg-gray-700 text-white border-r border-gray-300 py-2 px-4">
@@ -72,24 +72,29 @@ function App() {
             <th className="w-2/5 bg-gray-700 text-white border-r border-gray-300 py-2 px-4">
               Short-Url
             </th>
-            <th className="w-1/10 bg-gray-700 text-white py-2 px-4">Clicks</th>
+            <th ></th>
           </tr>
         </thead>
         <tbody>
           {data.map((e, index) => (
-            <tr key={index}>
-              <td className="w-3/5 bg-gray-200 border-r border-gray-300 py-2 px-4 hover:bg-gray-100">
-                <a className="font-semibold hover:text-sky-400 " href={e.full} >
+            <tr className="w-[70vw]" key={index}>
+              <td className=" max-w-3/5 bg-gray-200 border-r border-gray-300 py-2 px-4 hover:bg-gray-100">
+                <a className=" hover:text-sky-400 " href={e.full}>
                   {e.full}
                 </a>
               </td>
               <td className="w-2/5 bg-gray-200 border-r border-gray-300 py-2 px-4 hover:bg-gray-100">
-                <a className="font-semibold hover:text-sky-400 " href={e.short} >
+                <a className=" hover:text-sky-400 " href={e.full}>
                   {e.short}
                 </a>
               </td>
-              <td className="w-1/10 bg-gray-200 py-2 px-4 hover:bg-gray-100">
-                <button onClick={ () => handledelete(e)}>Delete</button>
+              <td >
+                <button
+                  className="bg-gray-700 hover:bg-gray-200 font-semibold ml-2 text-white  py-2 px-4 rounded"
+                  onClick={() => handledelete(e)}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
