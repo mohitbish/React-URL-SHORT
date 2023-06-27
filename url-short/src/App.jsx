@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 const submitroute = "http://localhost:8888/submitroute";
 const getdataroute = "http://localhost:8888/getdata";
+const deleteroute = "http://localhost:8888/delete";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
@@ -11,8 +12,11 @@ function App() {
     setInputValue(event.target.value);
   };
  
-  const handlelinkclick =()=>{
-    
+  const handledelete = async(e)=>{
+     const response = await axios.post(deleteroute, {
+      data: e.short,
+    });
+    console.log(e.short);
   }
 
   const handlesubmit = async () => {
@@ -80,12 +84,12 @@ function App() {
                 </a>
               </td>
               <td className="w-2/5 bg-gray-200 border-r border-gray-300 py-2 px-4 hover:bg-gray-100">
-                <a className="font-semibold hover:text-sky-400 " href={e.short} onClick={handlelinkclick}>
+                <a className="font-semibold hover:text-sky-400 " href={e.short} >
                   {e.short}
                 </a>
               </td>
               <td className="w-1/10 bg-gray-200 py-2 px-4 hover:bg-gray-100">
-                {e.clicks}
+                <button onClick={ () => handledelete(e)}>Delete</button>
               </td>
             </tr>
           ))}

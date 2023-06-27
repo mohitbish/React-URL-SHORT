@@ -44,6 +44,11 @@ app.get('/getdata', async (req, res) => {
   res.send(data)
   
 })
+app.post('/delete', async (req, res) => {
+  await Url_data.deleteOne({short: req.body.data})
+ 
+})
+
 
 
 app.listen(PORT, () => console.log("Server is running on ", PORT));
