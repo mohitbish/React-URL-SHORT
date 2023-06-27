@@ -1,16 +1,19 @@
 import axios from "axios";
-import { useState,useEffect } from "react";
-const submitroute = 'http://localhost:8888/submitroute';
-const getdataroute = 'http://localhost:8888/getdata';
+import { useState, useEffect } from "react";
+const submitroute = "http://localhost:8888/submitroute";
+const getdataroute = "http://localhost:8888/getdata";
 
 function App() {
-  
-  const [inputValue, setInputValue] = useState('');
-  const [urlArray, seturlArray] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+  const [data, setData] = useState([]);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
+ 
+  const handlelinkclick =()=>{
+    
+  }
 
   const handlesubmit = async () => {
     try {
@@ -21,25 +24,20 @@ function App() {
     } catch (error) {
       console.error(error);
     }
-      
   };
 
-  
   useEffect(() => {
     const getdata = async () => {
       try {
-        
         const response = await axios.get(getdataroute);
-        await seturlArray(response.data);
-        console.log(urlArray)
-        
+        const receivedData = response.data;
+        setData(receivedData);
       } catch (error) {
         console.error(error);
       }
     };
-
     getdata();
-  }, []);
+  }, [data]);
 
   return (
     <div className=" w-[100vw] h-[100vh] container mx-auto my-auto flex flex-col items-center justify-center">
@@ -74,17 +72,23 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td className="w-3/5 bg-gray-200 border-r border-gray-300 py-2 px-4 hover:bg-gray-100">
-              Content 1
-            </td>
-            <td className="w-2/5 bg-gray-200 border-r border-gray-300 py-2 px-4 hover:bg-gray-100">
-              Content 2
-            </td>
-            <td className="w-1/10 bg-gray-200 py-2 px-4 hover:bg-gray-100">
-              Content 3
-            </td>
-          </tr>
+          {data.map((e, index) => (
+            <tr key={index}>
+              <td className="w-3/5 bg-gray-200 border-r border-gray-300 py-2 px-4 hover:bg-gray-100">
+                <a className="font-semibold hover:text-sky-400 " href={e.full} >
+                  {e.full}
+                </a>
+              </td>
+              <td className="w-2/5 bg-gray-200 border-r border-gray-300 py-2 px-4 hover:bg-gray-100">
+                <a className="font-semibold hover:text-sky-400 " href={e.short} onClick={handlelinkclick}>
+                  {e.short}
+                </a>
+              </td>
+              <td className="w-1/10 bg-gray-200 py-2 px-4 hover:bg-gray-100">
+                {e.clicks}
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
