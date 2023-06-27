@@ -30,9 +30,8 @@ function App() {
       try {
         
         const response = await axios.get(getdataroute);
-        seturlArray(response.data);
+        await seturlArray(response.data);
         console.log(urlArray)
-        console.log(response.data)
         
       } catch (error) {
         console.error(error);
