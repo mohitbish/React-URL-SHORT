@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import DeleteIcon from '@mui/icons-material/Delete';
 const submitroute = "http://localhost:8888/submitroute";
 const getdataroute = "http://localhost:8888/getdata";
 const deleteroute = "http://localhost:8888/delete";
@@ -44,32 +45,32 @@ function App() {
   }, [data]);
 
   return (
-    <div className=" w-[100vw] h-[100vh] container mx-auto my-auto flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold w-[80vw]">URL-SHORTNER</h1>
-      <form className="flex flex-col my-10 bg-[#2d3748]">
+    <div className=" w-[100vw] h-[100vh] container mx-auto  flex flex-col items-center justify-top border-2 border-black bg-[#5cdb95]" >
+      <h1 className="text-5xl font-bold mt-[10vw] ml-[0vw] w-[50vw] text-[#05386B] ">URL-SHORTNER</h1>
+      <form className="flex flex-col my-10 bg-[#5cdb95">
         <input
           type="text"
           name="FullURL"
-          className="border rounded p-2 w-[40vw]  text-white  bg-gray-700"
-          placeholder="Enter your url"
+          className="rounded p-2 w-[50vw] h-[10vh] font-semibold text-[#05386B]  bg-[#379683]"
+          placeholder="Enter your url here ..."
           value={inputValue}
           onChange={handleInputChange}
         />
         <button
           onClick={handlesubmit}
           type="submit"
-          className="bg-gray-900 text-white font-semibold uppercase py-2 rounded  hover:bg-gray-700"
+          className="bg-[#05386B] my-[2vh] ml-[0vw] w-[20vw] text-white font-semibold uppercase py-2 rounded  hover:bg-[#405365]"
         >
           Shrink
         </button>
       </form>
-      <table className="max-w-[80vw]">
+      <table className="max-w-[80vw]  ">
         <thead>
-          <tr>
-            <th className="w-3/5 bg-gray-700 text-white border-r border-gray-300 py-2 px-4">
+          <tr className="border-1 border-[#edf5e1]">
+            <th className="w-3/5  bg-[#5cdb95] text-[#05386B]  border-2 border-[#edf5e1] py-2 px-4">
               Full-Url
             </th>
-            <th className="w-2/5 bg-gray-700 text-white border-r border-gray-300 py-2 px-4">
+            <th className="w-2/5  bg-[#5cdb95] text-[#05386B]  border-2 border-[#edf5e1] py-2 px-4">
               Short-Url
             </th>
             <th ></th>
@@ -78,22 +79,22 @@ function App() {
         <tbody>
           {data.map((e, index) => (
             <tr className="w-[70vw]" key={index}>
-              <td className=" max-w-3/5 bg-gray-200 border-r border-gray-300 py-2 px-4 hover:bg-gray-100">
-                <a className=" hover:text-sky-400 " href={e.full}>
+              <td className=" max-w-3/5 bg-[#5cdb95] border-2 border-[#edf5e1] py-2 px-4 hover:bg-[#379683]">
+                <a className=" font-semibold text-[#edf5e1] hover:text-[#05386B] " href={e.full}>
                   {e.full}
                 </a>
               </td>
-              <td className="w-2/5 bg-gray-200 border-r border-gray-300 py-2 px-4 hover:bg-gray-100">
-                <a className=" hover:text-sky-400 " href={e.full}>
+              <td className="w-2/5  bg-[#5cdb95] border-2 border-[#edf5e1] py-2 px-4 hover:bg-[#379683]">
+                <a className="font-semibold text-[#edf5e1] hover:text-[#05386B] " href={e.full}>
                   {e.short}
                 </a>
               </td>
               <td >
                 <button
-                  className="bg-gray-700 hover:bg-gray-200 font-semibold ml-2 text-white  py-2 px-4 rounded"
+                  className="bg-[#05386B] hover:bg-[#405365] mx-2 text-white  py-2 px-2 rounded"
                   onClick={() => handledelete(e)}
                 >
-                  Delete
+                  <DeleteIcon/>
                 </button>
               </td>
             </tr>
@@ -105,3 +106,4 @@ function App() {
 }
 
 export default App;
+
