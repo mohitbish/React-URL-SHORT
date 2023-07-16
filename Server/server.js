@@ -5,7 +5,7 @@ var cors = require("cors");
 const Url_data = require("./Model/Url-Data");
 var bodyParser = require("body-parser");
 
-app.use(cors({origin: "https://url-short.onrender.com"}));
+app.use(cors({origin: "https://url-short-561b.onrender.com"}));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
