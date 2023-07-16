@@ -38,4 +38,4 @@ app.post("/delete", async (req, res) => {
   await Url_data.deleteOne({ short: req.body.data });
 });
 
-app.listen(process.env.PORT, () => console.log("Server is running on ", PORT));
+app.listen(process.env.PORT, () => console.log("Server is running on ", process.env.PORT));
