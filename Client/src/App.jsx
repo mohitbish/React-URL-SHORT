@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
-const submitroute = "http://localhost:8888/submitroute";
-const getdataroute = "http://localhost:8888/getdata";
-const deleteroute = "http://localhost:8888/delete";
+const host = "https://url-short-api.onrender.com"
+const submitroute = `${host}/submitroute`;
+const getdataroute = `${host}/getdata`;
+const deleteroute = `${host}/delete`;
 
 function App() {
   const [inputValue, setInputValue] = useState("");
