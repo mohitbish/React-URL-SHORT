@@ -46,7 +46,7 @@ function App() {
   }, [data]);
 
   return (
-    <div className=" w-[100vw] h-[100vh] container mx-auto  flex flex-col items-center justify-top border-2 border-black bg-[#5cdb95]">
+    <div className=" w-full h-screen flex flex-col items-center justify-top border-2 border-black bg-[#5cdb95]">
       <h1 className="text-5xl font-bold mt-[10vw] ml-[0vw] w-[50vw] text-[#05386B] ">
         URL-SHORTNER
       </h1>
@@ -67,7 +67,7 @@ function App() {
           Shrink
         </button>
       </form>
-      <table className="table-fixed w-full ">
+      <table className="table-fixed w-9/12 ">
         <thead>
           <tr className="border-1 h-[2vh] text-2xl border-[#edf5e1]">
             <th className="w-3/5  word-wrap: break-word  bg-[#5cdb95] text-[#05386B]  border-2 border-[#edf5e1] py-2 px-4">
@@ -86,6 +86,7 @@ function App() {
                 <a
                   className=" font-semibold text-[#edf5e1] hover:text-[#05386B] "
                   href={e.full}
+                  target="_blank"
                 >
                   {e.full}
                 </a>
@@ -94,6 +95,7 @@ function App() {
                 <a
                   className="font-semibold text-[#edf5e1] hover:text-[#05386B] "
                   href={e.full}
+                  target="_blank"
                 >
                   {e.short}
                 </a>
